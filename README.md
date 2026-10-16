@@ -4,6 +4,14 @@ Endpoints:
 - /products
     - GET: Get all product in catalog
     - POST: Add one product to catalog
+- /products/min-price?price=1000
+  - GET: Retrieve products with a price greater than or equal to the specified price.
+- /products/max-price?price=3000
+  - GET: Retrieve products with a price less than or equal to the specified price.
+- /products/by-category?name=Laptop
+  - GET: Retrieve products belonging to a specific category.
+
+
 
 ```
 CICD-1 Lab 1
