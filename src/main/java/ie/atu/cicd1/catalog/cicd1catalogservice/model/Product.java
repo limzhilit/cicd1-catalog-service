@@ -1,11 +1,17 @@
 package ie.atu.cicd1.catalog.cicd1catalogservice.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
 @Entity
 @Table(name = "products")
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class Product {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,36 +19,8 @@ public class Product {
   private String name;
   private BigDecimal price;
 
-  public Product() {
-  }
+  @ManyToOne
+  @JoinColumn(name = "category_id")
+  private Category category;
 
-  public Product(Long id, String name, BigDecimal price) {
-    this.id = id;
-    this.name = name;
-    this.price = price;
-  }
-
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
-
-  public String getName() {
-    return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
-  }
-
-  public BigDecimal getPrice() {
-    return price;
-  }
-
-  public void setPrice(BigDecimal price) {
-    this.price = price;
-  }
 }
