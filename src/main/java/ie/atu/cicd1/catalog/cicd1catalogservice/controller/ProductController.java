@@ -1,5 +1,6 @@
 package ie.atu.cicd1.catalog.cicd1catalogservice.controller;
 
+import ie.atu.cicd1.catalog.cicd1catalogservice.dto.CreateProductRequest;
 import ie.atu.cicd1.catalog.cicd1catalogservice.model.Product;
 import ie.atu.cicd1.catalog.cicd1catalogservice.service.ProductService;
 import org.springframework.http.HttpStatus;
@@ -24,8 +25,8 @@ public class ProductController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Product create(@RequestBody Product product) {
-        return productService.create(product);
+    public Product createProduct(@RequestBody CreateProductRequest request) {
+        return productService.createProduct(request);
     }
 
     @GetMapping("/{id}")
@@ -37,5 +38,17 @@ public class ProductController {
     public List<Product> getByMinimumPrice(
             @RequestParam("price") BigDecimal price) {
         return productService.getByMinimumPrice(price);
+    }
+
+    @GetMapping("/max-price")
+    public List<Product> getByMaximumPrice(
+            @RequestParam("price") BigDecimal price) {
+        return productService.getByMaximumPrice(price);
+    }
+
+    @GetMapping("/by-category")
+    public List<Product> getByCategory(
+            @RequestParam("name") String categoryName) {
+        return productService.getByCategoryName(categoryName);
     }
 }
